@@ -1,0 +1,42 @@
+.perfil {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+}
+  
+ .perfil img {
+   border-radius: 50%;
+   margin-bottom: 20px;
+}
+  
+.info h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    min-height: 24px;
+}
+  
+.icons {
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+}
+  
+.icons img {
+    width: 32px;
+    height: 32px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+}
+  
+.icons img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+  
