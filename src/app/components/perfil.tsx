@@ -1,39 +1,20 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./perfil.css";
+import { Persona } from "../hooks/usePersona";
 
-interface Persona {
-  foto: string;
-  nombre: string;
-  correo: string;
-  cumpleanos: string;
-  ubicacion: string;
-  telefono: string;
-  contrasena: string;
+interface PerfilProps {
+  persona: Persona | null;
 }
 
-export default function Perfil() {
-  const [persona, setPersona] = useState<Persona | null>(null);
+export default function Perfil({ persona }: PerfilProps) {
   const [selectedField, setSelectedField] = useState<string>("Pase el cursor sobre un ícono");
 
-  const fetchPersona = async () => {
-    const response = await fetch("https://randomuser.me/api/");
-    const data = await response.json();
-    const newPersona = {
-      foto: data.results[0].picture.large,
-      nombre: `${data.results[0].name.first} ${data.results[0].name.last}`,
-      correo: data.results[0].email,
-      cumpleanos: new Date(data.results[0].dob.date).toLocaleDateString(),
-      ubicacion: `${data.results[0].location.city}, ${data.results[0].location.country}`,
-      telefono: data.results[0].phone,
-      contrasena: data.results[0].login.password,
-    };
-    setPersona(newPersona);
-  };
-
   useEffect(() => {
-    fetchPersona();
-  }, []);
+    if (persona) {
+      setSelectedField(persona.nombre);
+    }
+  }, [persona]);
 
   if (!persona) return <div>Esperando...</div>;
 
