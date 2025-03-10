@@ -10,7 +10,7 @@ interface BarrahistorialProps {
 
 const Barrahistorial = ({ history, selectPersona }: BarrahistorialProps) => {
     return (
-        <div className="w-1/4 h-screen bg-gray-900 p-4 overflow-y-auto border-r border-gray-700 fixed left-0 top-0">
+        <div className="w-1/6 h-screen bg-gray-900 p-4 overflow-y-auto border-r border-gray-700 fixed left-0 top-0">
             {history.map((person, index) => (
                 <div 
                     key={index} 

@@ -12,7 +12,7 @@ export default function Page() {
     <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', height: '100vh' }}>
       <Barrahistorial history={history} selectPersona={selectPersona} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '20px', color: 'gray' }}>Bienvenido</h1>
+         <h1 style={{ fontSize: '2rem', marginBottom: '10px', color: 'white' }}>Generador de personas aleatorio</h1>
         {loading ? <div>Cargando...</div> : <Perfil persona={persona} />}
       </div>
       <button 

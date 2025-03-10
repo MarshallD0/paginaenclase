@@ -9,14 +9,25 @@ interface PerfilProps {
 
 export default function Perfil({ persona }: PerfilProps) {
   const [selectedField, setSelectedField] = useState<string>("Pase el cursor sobre un ícono");
+  const [activeIcon, setActiveIcon] = useState<string>("nombre");
 
   useEffect(() => {
     if (persona) {
       setSelectedField(persona.nombre);
+      setActiveIcon("nombre");
     }
   }, [persona]);
 
   if (!persona) return <div>Esperando...</div>;
+
+  const iconData = [
+    { src: "/iconopersona.png", alt: "Nombre", field: "nombre", value: persona.nombre },
+    { src: "/correo.png", alt: "Correo", field: "correo", value: persona.correo },
+    { src: "/calendario.png", alt: "Cumpleaños", field: "cumpleanos", value: persona.cumpleanos },
+    { src: "/ubicacion.png", alt: "Ubicación", field: "ubicacion", value: persona.ubicacion },
+    { src: "/telefono.png", alt: "Teléfono", field: "telefono", value: persona.telefono },
+    { src: "/candado.png", alt: "Contraseña", field: "contrasena", value: persona.contrasena },
+  ];
 
   return (
     <div className="perfil">
@@ -25,12 +36,18 @@ export default function Perfil({ persona }: PerfilProps) {
         <h1>{selectedField}</h1>
       </div>
       <div className="icons">
-        <img src="/iconopersona.png" alt="Nombre" onMouseEnter={() => setSelectedField(persona.nombre)} />
-        <img src="/correo.png" alt="Correo" onMouseEnter={() => setSelectedField(persona.correo)} />
-        <img src="/calendario.png" alt="Cumpleaños" onMouseEnter={() => setSelectedField(persona.cumpleanos)} />
-        <img src="/ubicacion.png" alt="Ubicación" onMouseEnter={() => setSelectedField(persona.ubicacion)} />
-        <img src="/telefono.png" alt="Teléfono" onMouseEnter={() => setSelectedField(persona.telefono)} />
-        <img src="/candado.png" alt="Contraseña" onMouseEnter={() => setSelectedField(persona.contrasena)} />
+        {iconData.map((icon) => (
+          <img
+            key={icon.field}
+            src={icon.src}
+            alt={icon.alt}
+            onMouseEnter={() => {
+              setSelectedField(icon.value);
+              setActiveIcon(icon.field);
+            }}
+            className={`icon ${activeIcon === icon.field ? "active" : ""}`}
+          />
+        ))}
       </div>
     </div>
   );
